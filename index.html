@@ -33,15 +33,6 @@
 	<!-- Theme style  -->
 	<link rel="stylesheet" href="css/style.css">
 
-	<script async src="https://www.googletagmanager.com/gtag/js?id=UA-165895913-1"></script>
-	<script>
-	  window.dataLayer = window.dataLayer || [];
-	  function gtag(){dataLayer.push(arguments);}
-	  gtag('js', new Date());
-
-	  gtag('config', 'UA-165895913-1');
-	</script>
-
 	<script type="text/javascript">
 	  var _paq = window._paq || [];
 	  _paq.push(['trackPageView']);
@@ -87,6 +78,9 @@
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#" onclick="$('#vks-story').goTo();return false;">Story</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="$('#vks-media').goTo();return false;">Media</a>
 					</li>
 					<li class="nav-item">
 						<a class="nav-link" href="#"  onclick="$('#vks-contact').goTo();return false;">Contact</a>
@@ -289,6 +283,60 @@
 		</div>
 	</div>
 
+	<div id="vks-media" class="vks-reviews-outer">
+		<h1>Press Releases</h1>
+		<div class="container vks-reviews-inner" style="margin-top: 30px !important;">
+			<div class="row">
+				<p style="padding: 1em;">
+					<ol style="list-style-type: none">
+						<li>VanKeel Solutions Offers Free 3D Live VTO To Independent Eyewear Vendors - <a href="#" data-toggle="modal" data-target="#myModal" data-text="text/vankeelsolutions_press_release_12May2020.html" data-screemdump="">12 May 2020</a></li>
+					</ol>
+				</p>
+			</div>
+		</div>
+		<h1>Media Coverage</h1>
+		<div class="container vks-reviews-inner" style="margin-top: 30px !important;">
+			<div class="row">
+				<p style="padding: 1em;">
+					<ol style="list-style-type: none">
+						<li><b>Canada: </b>
+						<ol style="list-style-type: none; padding-left: 2rem;">
+								<li>Optic Guide - <a href="#" data-toggle="modal" data-target="#myModal" data-text="" data-screemdump="img/opti-guide.com_14May2020_english_1200x1279.jpg">14 May 2020</a></li>
+						</ol>
+						</li>
+						<li><b>Germany: </b></li>
+						<ol style="list-style-type: none; padding-left: 2rem;">
+							<li>Optic Und Vision - <a href="#" data-toggle="modal" data-target="#myModal" data-text="" data-screemdump="img/opticundvision_14May2020.jpg">14 May 2020</a></li>
+						</ol>
+						<li><b>UK: </b></li>
+						<ol style="list-style-type: none; padding-left: 2rem;">
+							<li>Optician - <a href="#" data-toggle="modal" data-target="#myModal" data-text="" data-screemdump="img/opticianonline_21May2020.jpg">21 May 2020</a></li>
+						</ol>
+						<li><b>US: </b></li>
+						<ol style="list-style-type: none; padding-left: 2rem;">
+							<li>The Optical Journal - <a href="#" data-toggle="modal" data-target="#myModal" data-text="" data-screemdump="img/opticaljournal_21May2020.jpg">21 May 2020</a></li>
+						</ol>
+					</ol>
+				</p>
+			</div>
+		</div>
+	</div>
+
+
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p id="textcontext"></p>
+          <p><img src="" width=100%></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
 	<!-- ==========================================================================================================
                                                  BOTTOM
     ========================================================================================================== -->
@@ -344,6 +392,7 @@
 							<a href="#" onclick="$('#vks-demo').goTo();return false;"><li>Demo</li></a>
 							<!-- <a href="#" onclick="$('#vks-reviews').goTo();return false;"><li>Reviews</li></a> -->
 							<a href="#" onclick="$('#vks-story').goTo();return false;"><li>Story</li></a>
+							<a href="#" onclick="$('#vks-media').goTo();return false;"><li>Media</li></a>
 							<a href="#" onclick="$('#vks-contact').goTo();return false;"><li>Contact</li></a>
 							<!-- <li>Contact Us: <a href="mailto:vankeelsolutions@gmail.com">vankeelsolutions@gmail.com</a></li> -->
 						</ul>
@@ -365,15 +414,36 @@
 		</div>
 	</footer>
 
-
-
-
-</div> <!-- main page wrapper -->
+</div>
 	
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.js"></script>
 	<script src="js/owl.carousel.js"></script>
 	<script src="js/wow.min.js"></script>
 	<script src="js/main.js"></script>
+
+	<script type="text/javascript">
+		$('#myModal').on('show.bs.modal', function (event) {
+			var modal = $(this)
+			var linkdata = $(event.relatedTarget)
+			var imgurl = linkdata.data('screemdump')
+			var texturl = linkdata.data('text')
+
+			if(imgurl!="") { 
+				modal.find('.modal-body img').attr('src', imgurl)
+			} else {
+				modal.find('.modal-body img').attr('src', '')
+			}
+
+			if(texturl!="") {
+				$.get(texturl, function(data) {
+				    modal.find('.modal-body p#textcontext').html(data)
+				});
+			} else {
+				modal.find('.modal-body p#textcontext').html("")
+			}
+		})
+	</script>
+
 </body>
 </html>
